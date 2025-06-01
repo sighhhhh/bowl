@@ -6,27 +6,40 @@
   "architecture": {
     "64bit": {
       "url": "https://aka.ms/vs/17/release/vs_community.exe",
-      "hash": "skip",
+      "hash": "42937753b8607087f8df2bdcf0726c9881fad8a045a294f92287eccfbebe31e6", // 使用实际哈希值
+      "extract_dir": "vs_setup",
+      "pre_install": [
+        "# 创建安装目录",
+        "New-Item -ItemType Directory -Force -Path \"$dir\" | Out-Null",
+        "# 复制安装程序到临时目录",
+        "Copy-Item \"$dir/vs_community.exe\" \"$dir/vs_setup.exe\" -Force"
+      ],
       "installer": {
-        "args": [
-          "--quiet",
-          "--norestart",
-          "--add", "Microsoft.VisualStudio.Workload.ManagedDesktop",
-          "--add", "Microsoft.VisualStudio.Workload.NetWeb",
-          "--add", "Microsoft.VisualStudio.Workload.Data",
-          "--includeRecommended"
+        "script": [
+          "# 执行静默安装",
+          "$exe = \"$dir/vs_setup.exe\"",
+          "Start-Process -FilePath $exe -ArgumentList @('--quiet', '--norestart', '--add', 'Microsoft.VisualStudio.Workload.ManagedDesktop', '--add', 'Microsoft.VisualStudio.Workload.NetWeb', '--add', 'Microsoft.VisualStudio.Workload.Data', '--includeRecommended') -Wait",
+          "# 等待安装完成（可能需要较长时间）",
+          "Start-Sleep -Seconds 60"
         ]
       },
       "uninstaller": {
-        "args": [
-          "--uninstall",
-          "--quiet",
-          "--norestart"
+        "script": [
+          "# 查找卸载程序路径",
+          "$uninstaller = Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object { $_.DisplayName -like \"Visual Studio Community 2022*\" } | Select-Object -ExpandProperty UninstallString",
+          "if ($uninstaller) {",
+          "  Start-Process -FilePath $uninstaller -ArgumentList '/quiet /norestart' -Wait",
+          "} else {",
+          "  Write-Warning \"未找到 Visual Studio 卸载程序\"",
+          "}"
         ]
       }
     }
   },
-  "notes": "Visual Studio requires user interaction during installation.\nRun 'scoop install visualstudio' and follow the prompts.",
+  "bin": [],
+  "shortcuts": [
+    ["C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe", "Visual Studio 2022"]
+  ],
   "checkver": {
     "url": "https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
     "re": "Visual Studio ([\\d.]+) Release Notes"
