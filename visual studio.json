@@ -1,0 +1,42 @@
+{
+  "version": "2022",
+  "description": "Microsoft Visual Studio IDE",
+  "homepage": "https://visualstudio.microsoft.com/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://aka.ms/vs/17/release/vs_community.exe",
+      "hash": "skip",
+      "installer": {
+        "args": [
+          "--quiet",
+          "--norestart",
+          "--add", "Microsoft.VisualStudio.Workload.ManagedDesktop",
+          "--add", "Microsoft.VisualStudio.Workload.NetWeb",
+          "--add", "Microsoft.VisualStudio.Workload.Data",
+          "--includeRecommended"
+        ]
+      },
+      "uninstaller": {
+        "args": [
+          "--uninstall",
+          "--quiet",
+          "--norestart"
+        ]
+      }
+    }
+  },
+  "notes": "Visual Studio requires user interaction during installation.\n" +
+           "Run 'scoop install visualstudio' and follow the prompts.",
+  "checkver": {
+    "url": "https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
+    "re": "Visual Studio ([\\d.]+) Release Notes"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://aka.ms/vs/$match1/release/vs_community.exe"
+      }
+    }
+  }
+}
