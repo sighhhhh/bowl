@@ -6,17 +6,24 @@
   "architecture": {
     "64bit": {
       "url": "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao_pc/1.57.8/1023/Doubao_installer.exe",
-      "hash": "skip",
+      "hash": "4f4250d3d22ffdaee19e7403e97d011a7ee3b90509f334ed9b340d4d86eaa183",
+      "extract_dir": "Doubao",
       "installer": {
-        "args": ["/S"]
+        "script": [
+          "# 假设安装程序支持静默安装",
+          "$exe = 'Doubao_installer.exe'",
+          "Start-Process -FilePath $exe -ArgumentList '/S' -Wait"
+        ]
       },
       "uninstaller": {
-        "file": "uninstall.exe",
-        "args": ["/S"]
+        "script": "Start-Process -FilePath 'uninstall.exe' -ArgumentList '/S' -Wait"
       }
     }
   },
   "bin": ["doubao.exe"],
+  "shortcuts": [
+    ["doubao.exe", "Doubao"]
+  ],
   "checkver": {
     "url": "https://doubao.com/download",
     "re": "Doubao ([\\d.]+)"
