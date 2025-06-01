@@ -6,7 +6,7 @@
   "architecture": {
     "64bit": {
       "url": "https://aka.ms/vs/17/release/vs_community.exe",
-      "hash": "42937753b8607087f8df2bdcf0726c9881fad8a045a294f92287eccfbebe31e6", // 使用实际哈希值
+      "hash": "42937753b8607087f8df2bdcf0726c9881fad8a045a294f92287eccfbebe31e6",
       "extract_dir": "vs_setup",
       "pre_install": [
         "# 创建安装目录",
@@ -29,7 +29,8 @@
           "$uninstaller = Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object { $_.DisplayName -like \"Visual Studio Community 2022*\" } | Select-Object -ExpandProperty UninstallString",
           "if ($uninstaller) {",
           "  Start-Process -FilePath $uninstaller -ArgumentList '/quiet /norestart' -Wait",
-          "} else {",
+          "}",
+          "else {",
           "  Write-Warning \"未找到 Visual Studio 卸载程序\"",
           "}"
         ]
