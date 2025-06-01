@@ -26,8 +26,7 @@
       }
     }
   },
-  "notes": "Visual Studio requires user interaction during installation.\n" +
-           "Run 'scoop install visualstudio' and follow the prompts.",
+  "notes": "Visual Studio requires user interaction during installation.\nRun 'scoop install visualstudio' and follow the prompts.",
   "checkver": {
     "url": "https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes",
     "re": "Visual Studio ([\\d.]+) Release Notes"
