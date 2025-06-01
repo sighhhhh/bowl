@@ -1,0 +1,31 @@
+{
+  "version": "1.57.8",
+  "description": "Doubao AI Assistant",
+  "homepage": "https://doubao.com",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao_pc/1.57.8/1023/Doubao_installer.exe",
+      "hash": "skip",
+      "installer": {
+        "args": ["/S"]
+      },
+      "uninstaller": {
+        "file": "uninstall.exe",
+        "args": ["/S"]
+      }
+    }
+  },
+  "bin": ["doubao.exe"],
+  "checkver": {
+    "url": "https://doubao.com/download",
+    "re": "Doubao ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao_pc/$version/1023/Doubao_installer.exe"
+      }
+    }
+  }
+}
