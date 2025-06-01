@@ -7,16 +7,32 @@
     "64bit": {
       "url": "https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao_pc/1.57.8/1023/Doubao_installer.exe",
       "hash": "4f4250d3d22ffdaee19e7403e97d011a7ee3b90509f334ed9b340d4d86eaa183",
-      "extract_dir": "Doubao",
+      "extract_dir": "doubao",
+      "pre_install": [
+        "# 创建安装目录",
+        "New-Item -ItemType Directory -Force -Path \"$dir\" | Out-Null",
+        "# 复制安装程序到临时目录",
+        "Copy-Item \"$dir/Doubao_installer.exe\" \"$dir/doubao_setup.exe\" -Force"
+      ],
       "installer": {
         "script": [
-          "# 假设安装程序支持静默安装",
-          "$exe = 'Doubao_installer.exe'",
-          "Start-Process -FilePath $exe -ArgumentList '/S' -Wait"
+          "# 执行静默安装",
+          "$exe = \"$dir/doubao_setup.exe\"",
+          "Start-Process -FilePath $exe -ArgumentList \"/S\" -Wait",
+          "# 等待安装完成",
+          "Start-Sleep -Seconds 5"
         ]
       },
       "uninstaller": {
-        "script": "Start-Process -FilePath 'uninstall.exe' -ArgumentList '/S' -Wait"
+        "script": [
+          "# 查找卸载程序路径",
+          "$uninstaller = Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object { $_.DisplayName -like \"Doubao*\" } | Select-Object -ExpandProperty UninstallString",
+          "if ($uninstaller) {",
+          "  Start-Process -FilePath $uninstaller -ArgumentList \"/S\" -Wait",
+          "} else {",
+          "  Write-Warning \"未找到 Doubao 卸载程序\"",
+          "}"
+        ]
       }
     }
   },
