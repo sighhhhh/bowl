@@ -1,0 +1,55 @@
+
+{
+  "version": "latest",
+  "description": "WeType - A typing tool developed by Tencent",
+  "homepage": "https://weixin.qq.com",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.z.weixin.qq.com/app/win/wetype_installer_official_p_48.exe",
+      "hash": "4C4DF7CC69A4AE4FD2F2A19633999D31B6E06ADD348629FBF1F07716CA6971B2",
+      "extract_dir": "wetype",
+      "pre_install": [
+        "# 创建安装目录",
+        "New-Item -ItemType Directory -Force -Path \"$dir\" | Out-Null",
+        "# 复制安装程序到临时目录",
+        "Copy-Item \"$dir/wetype_installer_official_p_48.exe\" \"$dir/wetype_setup.exe\" -Force"
+      ],
+      "installer": {
+        "script": [
+          "# 执行静默安装",
+          "$exe = \"$dir/wetype_setup.exe\"",
+          "Start-Process -FilePath $exe -ArgumentList \"/S\" -Wait",
+          "# 等待安装完成",
+          "Start-Sleep -Seconds 5"
+        ]
+      },
+      "uninstaller": {
+        "script": [
+          "# 查找卸载程序路径",
+          "$uninstaller = Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object { $_.DisplayName -like \"WeType*\" } | Select-Object -ExpandProperty UninstallString",
+          "if ($uninstaller) {",
+          "  Start-Process -FilePath $uninstaller -ArgumentList \"/S\" -Wait",
+          "} else {",
+          "  Write-Warning \"未找到 WeType 卸载程序\"",
+          "}"
+        ]
+      }
+    }
+  },
+  "bin": ["wetype.exe"],
+  "shortcuts": [
+    ["wetype.exe", "WeType"]
+  ],
+  "checkver": {
+    "url": "https://weixin.qq.com/cgi-bin/readtemplate?t=win_weixin_download&lang=zh_CN",
+    "re": "WeType Installer ([\\d.]+)"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://download.z.weixin.qq.com/app/win/wetype_installer_official_p_$version.exe"
+      }
+    }
+  }
+}
