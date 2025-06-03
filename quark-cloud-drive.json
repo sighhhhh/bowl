@@ -6,7 +6,7 @@
   "license": "Proprietary",
   "architecture": {
     "64bit": {
-      "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v3.19.0_release_(Build2135311-20250327222033).exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
+      "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v3.19.0_release_%28Build2135311-20250327222033%29.exe?auth_key=1749528453-0-0-14cd9507e745100f69431423cb9adb67&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
       "hash": "16204EFDDD71A53CBD2C00E96938B1BF6D9AFCF10F3C242689F195A5E05D8C24",
       "extract_dir": "quark-cloud-drive",
       "pre_install": [
