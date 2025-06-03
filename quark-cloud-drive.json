@@ -1,42 +1,53 @@
 {
   "version": "3.19.0",
-  "description": "Quark Cloud Drive - 夸克云盘 Windows 客户端",
-  "homepage": "https://quark.cn",
+  "description": "Quark Cloud Drive",
+  "homepage": "https://www.quark.cn/",
   "license": "Proprietary",
   "architecture": {
     "64bit": {
-      "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v3.19.0_release_%28Build2135311-20250327222033%29.exe?auth_key=1749528453-0-0-14cd9507e745100f69431423cb9adb67&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
+      "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v3.19.0_release_%28Build2135311-20250327222033%29.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
       "hash": "16204EFDDD71A53CBD2C00E96938B1BF6D9AFCF10F3C242689F195A5E05D8C24",
+      "extract_dir": "quark-cloud-drive",
+      "pre_install": [
+        "# 创建安装目录",
+        "New-Item -ItemType Directory -Force -Path \"$dir\" | Out-Null",
+        "# 复制安装程序到临时目录",
+        "Copy-Item \"$dir/QuarkCloudDrive_installer.exe\" \"$dir/quark_setup.exe\" -Force"
+      ],
       "installer": {
         "script": [
-          "# 直接使用下载的安装包路径（Scoop 会自动下载到临时目录）",
-          "$exe = \"$env:TEMP\\scoop\\$($env:USERNAME)\\quark-cloud-drive\\QuarkCloudDrive_v3.19.0_release_(Build*.exe\"",
+          "# 执行静默安装（需根据实际安装参数调整，示例为通用静默参数）",
+          "$exe = \"$dir/quark_setup.exe\"",
           "Start-Process -FilePath $exe -ArgumentList \"/S\" -Wait",
-          "Start-Sleep -Seconds 5"
+          "# 等待安装完成（根据实际安装速度调整等待时间）",
+          "Start-Sleep -Seconds 10"
         ]
       },
       "uninstaller": {
         "script": [
+          "# 查找卸载程序路径（需根据实际注册表结构调整DisplayName匹配规则）",
           "$uninstaller = Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object { $_.DisplayName -like \"Quark Cloud Drive*\" } | Select-Object -ExpandProperty UninstallString",
           "if ($uninstaller) {",
           "  Start-Process -FilePath $uninstaller -ArgumentList \"/S\" -Wait",
-          "}",
-          "else {",
+          "} else {",
           "  Write-Warning \"未找到 Quark Cloud Drive 卸载程序\"",
           "}"
         ]
       }
     }
   },
-  // 暂时移除 bin 和 shortcuts 字段（若安装后无命令行工具，可不配置）
+  "bin": ["quark-cloud-drive.exe"],
+  "shortcuts": [
+    ["quark-cloud-drive.exe", "Quark Cloud Drive"]
+  ],
   "checkver": {
-    "url": "https://quark.cn/download",
-    "re": "QuarkCloudDrive_v([\\d.]+)_release_"
+    "url": "https://www.quark.cn/download",
+    "re": "Quark Cloud Drive ([\\d.]+)"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v$version_release_(Build*.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe"
+        "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v$version_release_%28Build*%29.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe"
       }
     }
   }
