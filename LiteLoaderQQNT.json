@@ -5,7 +5,7 @@
     "architecture": {
         "64bit": {
             "url": "https://objects.githubusercontent.com/github-production-release-asset-2e65be/746129366/f1fb0464-9866-41d6-b8ff-f224164b65b6?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250603T142218Z&X-Amz-Expires=300&X-Amz-Signature=4fe57a4d2f2504dd8942f972cadc7b37c37fb6aa15ab165418880a30eb47e2ca&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dinstall_windows.exe&response-content-type=application%2Foctet-stream",
-            "hash": "00D3FE12E23A513334C3CC5C45D05B0FE9CEC7E11D02078F5E67200E9B8BE3C6D"
+            "hash": "0D3FE12E23A513334C3CC5C45D05B0FE9CEC7E11D02078F5E67200E9B8BE3C6D"
         }
     },
     "innosetup": true,
