@@ -8,19 +8,16 @@
       "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v3.19.0_release_%28Build2135311-20250327222033%29.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
       "hash": "16204efddd71a53cbd2c00e96938b1bf6d9afcf10f3c242689f195a5e05d8c24",
       "extract_dir": "quark-cloud-drive",
-      "pre_install": [], // 移除重命名步骤，直接使用原始文件名
+      "pre_install": [], 
       "installer": {
         "script": [
-          "# 直接使用下载的原始文件名（注意括号已解码为普通字符）",
           "$installerPath = Join-Path $dir 'QuarkCloudDrive_v3.19.0_release_(Build2135311-20250327222033).exe'",
           "Write-Host '==================== 安装指引 ===================='" -ForegroundColor Cyan,
-          "Write-Host '1. 请在安装界面中选择自定义安装路径：'" -ForegroundColor Yellow,
-          "Write-Host "D:\Software\scoop\apps\quark-cloud-drive\3.19.0\quark-cloud-drive"" -ForegroundColor Cyan,
-          "Write-Host '2. 确保安装完成后该路径下存在QuarkCloudDrive.exe'" -ForegroundColor Yellow,
-          "Write-Host '==============================================' -ForegroundColor Cyan",
-          "Start-Process -FilePath $installerPath -Wait", // 等待用户手动完成安装
-          "# 等待安装目录生成（根据实际安装速度调整等待时间）",
-          "Start-Sleep -Seconds 30"
+          "Write-Host '1. 请双击安装程序窗口，手动选择安装路径：'" -ForegroundColor Yellow,
+          "Write-Host \"D:\\Software\\scoop\\apps\\quark-cloud-drive\\3.19.0\\quark-cloud-drive\" -ForegroundColor Cyan",
+          "Write-Host '2. 安装完成后请按任意键继续...' -ForegroundColor Yellow",
+          "Start-Process -FilePath $installerPath -Wait",
+          "Read-Host -Prompt '请确认安装完成后按回车键'"
         ]
       },
       "uninstaller": {
@@ -36,7 +33,7 @@
     }
   },
   "bin": [
-    "quark-cloud-drive/QuarkCloudDrive.exe" // 指向手动安装后的实际路径
+    "quark-cloud-drive/QuarkCloudDrive.exe"
   ],
   "shortcuts": [
     [
