@@ -1,0 +1,26 @@
+{
+    "version": "1.18.1",
+    "description": "Installation script for LiteLoaderQQNT",
+    "homepage": "https://liteloaderqqnt.github.io/",
+    "architecture": {
+        "64bit": {
+            "url": "https://objects.githubusercontent.com/github-production-release-asset-2e65be/746129366/f1fb0464-9866-41d6-b8ff-f224164b65b6?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250603T140914Z&X-Amz-Expires=300&X-Amz-Signature=d87fae296f0376601d132c1fa54c3dcd82c1be725700e8577cf5a3e90eae590d&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dinstall_windows.exe&response-content-type=application%2Foctet-stream",
+            "hash": "00D3FE12E23A513334C3CC5C45D05B0FE9CEC7E11D02078F5E67200E9B8BE3C6D"
+        }
+    },
+    "innosetup": true,
+    "bin": "LiteLoaderQQNT.exe",
+    "shortcuts": [
+        [
+            "LiteLoaderQQNT.exe",
+            "LiteLoaderQQNT"
+        ]
+    ],
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://objects.githubusercontent.com/github-production-release-asset-2e65be/746129366/f1fb0464-9866-41d6-b8ff-f224164b65b6?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250603T140914Z&X-Amz-Expires=300&X-Amz-Signature=d87fae296f0376601d132c1fa54c3dcd82c1be725700e8577cf5a3e90eae590d&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dinstall_windows.exe&response-content-type=application%2Foctet-stream"
+            }
+        }
+    }
+}
