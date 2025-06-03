@@ -1,0 +1,56 @@
+
+{
+  "version": "4.1.0.370",
+  "description": "Quark Cloud Drive - 夸克云盘 Windows 客户端",
+  "homepage": "https://quark.cn",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://umcdn.quark.cn/download/37212/quarkpc/pcquark@clouddrive_share2/QuarkPC_V4.1.0.370_pc_pf30002_(zh-cn)_release_(Build2217222-250530235740-x64).exe",
+      "hash": "F1DF9E4B1CF57108C72D6E77854E6A7F0CF23886191D15EF0C4177936C6C3A47",
+      "extract_dir": "quark-cloud-drive",
+      "pre_install": [
+        "# 创建安装目录",
+        "New-Item -ItemType Directory -Force -Path \"$dir\" | Out-Null",
+        "# 复制安装程序到临时目录",
+        "Copy-Item \"$dir/QuarkPC_V4.1.0.370_pc_pf30002_(zh-cn)_release_(Build2217222-250530235740-x64).exe\" \"$dir/quark_setup.exe\" -Force"
+      ],
+      "installer": {
+        "script": [
+          "# 执行静默安装（需确认安装参数，部分程序可能使用 /S 或 /VERYSILENT）",
+          "$exe = \"$dir/quark_setup.exe\"",
+          "Start-Process -FilePath $exe -ArgumentList \"/S\" -Wait",
+          "# 等待安装完成",
+          "Start-Sleep -Seconds 5"
+        ]
+      },
+      "uninstaller": {
+        "script": [
+          "# 查找卸载程序路径",
+          "$uninstaller = Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object { $_.DisplayName -like \"Quark Cloud Drive*\" } | Select-Object -ExpandProperty UninstallString",
+          "if ($uninstaller) {",
+          "  Start-Process -FilePath $uninstaller -ArgumentList \"/S\" -Wait",
+          "}",
+          "else {",
+          "  Write-Warning \"未找到 Quark Cloud Drive 卸载程序\"",
+          "}"
+        ]
+      }
+    }
+  },
+  "bin": ["Quark.exe"],
+  "shortcuts": [
+    ["Quark.exe", "Quark Cloud Drive"]
+  ],
+  "checkver": {
+    "url": "https://quark.cn/download",
+    "re": "QuarkPC_V([\\d.]+)_pc_"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://umcdn.quark.cn/download/37212/quarkpc/pcquark@clouddrive_share2/QuarkPC_V$version_pc_pf30002_(zh-cn)_release_(Build*.exe"
+      }
+    }
+  }
+}
