@@ -7,31 +7,33 @@
     "64bit": {
       "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v3.19.0_release_%28Build2135311-20250327222033%29.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
       "hash": "16204EFDDD71A53CBD2C00E96938B1BF6D9AFCF10F3C242689F195A5E05D8C24",
-      "extract_dir": "quark-cloud-drive",
-      "pre_install": [], // 移除不必要的文件复制步骤
+      "extract_dir": "quark-cloud-drive", // 安装目录的一级文件夹（与最终路径中的quark-cloud-drive对应）
+      "pre_install": [], // 移除文件复制步骤，直接使用下载的EXE
       "installer": {
         "script": [
-          "# 直接使用下载的EXE执行静默安装（需确认正确参数）",
-          "$exe = \"$dir/QuarkCloudDrive_v3.19.0_release_%28Build2135311-20250327222033%29.exe\"", // 直接引用原始文件名
-          "Start-Process -FilePath $exe -ArgumentList \"/S\" -Wait", // 若官方支持静默安装，需确认正确参数（如/VERYSILENT）
-          "Start-Sleep -Seconds 15" // 延长等待时间确保安装完成
+          "# 直接运行下载的EXE（手动安装模式，需用户自行完成安装流程）",
+          "$exe = Join-Path $dir 'QuarkCloudDrive_v3.19.0_release_(Build2135311-20250327222033).exe'",
+          "Start-Process -FilePath $exe -Wait -NoNewWindow" // 不使用静默参数，弹出安装界面
         ]
       },
       "uninstaller": {
         "script": [
-          "$uninstaller = Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object { $_.DisplayName -eq \"Quark Cloud Drive\" } | Select-Object -ExpandProperty UninstallString",
-          "if ($uninstaller) {",
-          "  Start-Process -FilePath $uninstaller -ArgumentList \"/S\" -Wait",
+          "# 直接指定卸载程序路径（根据实际嵌套路径配置）",
+          "$uninstaller = Join-Path $dir 'quark-cloud-drive/unins000.exe'", // 嵌套路径中的卸载程序
+          "if (Test-Path $uninstaller) {",
+          "  Start-Process -FilePath $uninstaller -ArgumentList \"/S\" -Wait", // 若支持静默卸载，添加/S参数
           "} else {",
-          "  Write-Warning \"未找到 Quark Cloud Drive 卸载程序\"",
+          "  Write-Warning \"未找到卸载程序\"",
           "}"
         ]
       }
     }
   },
-  "bin": ["QuarkCloudDrive.exe"], // 需确认安装后实际可执行文件名
+  "bin": [ // 配置嵌套路径中的主程序文件
+    "quark-cloud-drive/QuarkCloudDrive.exe" // 相对于scoop应用目录的路径：apps/quark-cloud-drive/3.19.0/quark-cloud-drive/QuarkCloudDrive.exe
+  ],
   "shortcuts": [
-    ["QuarkCloudDrive.exe", "Quark Cloud Drive"] // 与bin字段保持一致
+    ["quark-cloud-drive/QuarkCloudDrive.exe", "Quark Cloud Drive"] // 与bin路径一致
   ],
   "checkver": {
     "url": "https://www.quark.cn/download",
