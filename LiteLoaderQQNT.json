@@ -12,7 +12,7 @@
     "bin": "install_windows.exe",
     "shortcuts": [
         [
-            "install_windows.exe",
+            "LiteLoaderQQNT.exe",
             "LiteLoaderQQNT"
         ]
     ],
