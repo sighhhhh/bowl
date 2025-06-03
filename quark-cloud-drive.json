@@ -1,19 +1,19 @@
 
 {
-  "version": "4.1.0.370",
+  "version": "3.19.0",
   "description": "Quark Cloud Drive - 夸克云盘 Windows 客户端",
   "homepage": "https://quark.cn",
   "license": "Proprietary",
   "architecture": {
     "64bit": {
-      "url": "https://umcdn.quark.cn/download/37212/quarkpc/pcquark@clouddrive_share2/QuarkPC_V4.1.0.370_pc_pf30002_(zh-cn)_release_(Build2217222-250530235740-x64).exe",
-      "hash": "F1DF9E4B1CF57108C72D6E77854E6A7F0CF23886191D15EF0C4177936C6C3A47",
+      "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v3.19.0_release_(Build2135311-20250327222033).exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
+      "hash": "16204EFDDD71A53CBD2C00E96938B1BF6D9AFCF10F3C242689F195A5E05D8C24",
       "extract_dir": "quark-cloud-drive",
       "pre_install": [
         "# 创建安装目录",
         "New-Item -ItemType Directory -Force -Path \"$dir\" | Out-Null",
         "# 复制安装程序到临时目录",
-        "Copy-Item \"$dir/QuarkPC_V4.1.0.370_pc_pf30002_(zh-cn)_release_(Build2217222-250530235740-x64).exe\" \"$dir/quark_setup.exe\" -Force"
+        "Copy-Item \"$dir/QuarkCloudDrive_v3.19.0_release_(Build2135311-20250327222033).exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe\" \"$dir/quark_setup.exe\" -Force"
       ],
       "installer": {
         "script": [
@@ -44,12 +44,12 @@
   ],
   "checkver": {
     "url": "https://quark.cn/download",
-    "re": "QuarkPC_V([\\d.]+)_pc_"
+    "re": "QuarkCloudDrive_v([\\d.]+)_release_"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://umcdn.quark.cn/download/37212/quarkpc/pcquark@clouddrive_share2/QuarkPC_V$version_pc_pf30002_(zh-cn)_release_(Build*.exe"
+        "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v$version_release_(Build*.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe"
       }
     }
   }
