@@ -9,10 +9,10 @@
         }
     },
     "innosetup": true,
-    "bin": "LiteLoaderQQNT.exe",
+    "bin": "install_windows.exe",
     "shortcuts": [
         [
-            "LiteLoaderQQNT.exe",
+            "install_windows.exe",
             "LiteLoaderQQNT"
         ]
     ],
