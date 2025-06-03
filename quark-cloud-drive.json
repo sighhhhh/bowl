@@ -10,7 +10,7 @@
       "extract_dir": "quark-cloud-drive",
       "pre_install": [
         "# 重命名下载的安装程序以避免特殊字符问题",
-        "$downloadPath = Join-Path $dir 'QuarkCloudDrive_v3.19.0_release_(Build2135311-20250327222033).exe'",
+        "$downloadPath = Join-Path $dir 'QuarkCloudDrive_v3.19.0_release_%28Build2135311-20250327222033%29.exe'",
         "$installerPath = Join-Path $dir 'quark_installer.exe'",
         "Move-Item -Path $downloadPath -Destination $installerPath -Force"
       ],
