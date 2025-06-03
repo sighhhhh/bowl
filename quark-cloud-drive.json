@@ -6,35 +6,58 @@
   "architecture": {
     "64bit": {
       "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v3.19.0_release_%28Build2135311-20250327222033%29.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
-      "hash": "16204efddd71a53cbd2c00e96938b1bf6d9afcf10f3c", // 替换为实际哈希值
-      "extract_dir": ".", // 直接解压到当前版本目录（不创建子文件夹）
-      "pre_install": [], // 移除冗余步骤
+      "hash": "16204efddd71a53cbd2c00e96938b1bf6d9afcf10f3c242689f195a5e05d8c24",
+      "extract_dir": "quark-cloud-drive",
+      "pre_install": [
+        "# 重命名下载的安装程序以避免特殊字符问题",
+        "$downloadPath = Join-Path $dir 'QuarkCloudDrive_v3.19.0_release_(Build2135311-20250327222033).exe'",
+        "$installerPath = Join-Path $dir 'quark_installer.exe'",
+        "Move-Item -Path $downloadPath -Destination $installerPath -Force"
+      ],
       "installer": {
         "script": [
-          "# 定义安装程序完整路径（包含特殊字符转义）",
-          "$exe = Join-Path $dir 'QuarkCloudDrive_v3.19.0_release_(Build2135311-20250327222033).exe'",
-          "# 启动安装程序（手动模式，等待用户完成安装）",
-          "Start-Process -FilePath $exe -Wait -NoNewWindow"
+          "# 启动安装程序（用户需手动完成安装）",
+          "$installer = Join-Path $dir 'quark_installer.exe'",
+          "Write-Host '请在弹出的安装界面中选择安装路径：' -ForegroundColor Yellow",
+          "Write-Host 'D:\\Software\\scoop\\apps\\quark-cloud-drive\\3.19.0\\quark-cloud-drive' -ForegroundColor Cyan",
+          "Start-Process -FilePath $installer -Wait",
+          "# 等待用户完成安装",
+          "Write-Host '请完成安装程序中的所有步骤...' -ForegroundColor Yellow",
+          "Start-Sleep -Seconds 5"
         ]
       },
       "uninstaller": {
         "script": [
-          "# 直接指定卸载程序路径（基于实际嵌套结构）",
-          "$uninstaller = Join-Path $dir 'quark-cloud-drive/unins000.exe'",
-          "if (Test-Path $uninstaller) {",
-          "  Start-Process -FilePath $uninstaller -Wait", // 交互式卸载（若静默参数无效）
+          "# 尝试从注册表获取卸载路径",
+          "$uninstallKey = 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*'",
+          "$uninstaller = Get-ItemProperty $uninstallKey | Where-Object { $_.DisplayName -like 'Quark Cloud Drive*' } | Select-Object -ExpandProperty UninstallString -ErrorAction SilentlyContinue",
+          "if ($uninstaller) {",
+          "  Write-Host '找到卸载程序: $uninstaller' -ForegroundColor Green",
+          "  Start-Process -FilePath $uninstaller -ArgumentList '/S' -Wait -ErrorAction SilentlyContinue",
           "} else {",
-          "  Write-Warning \"未找到卸载程序\"",
+          "  # 备用方案：直接使用已知的卸载程序路径",
+          "  $fallbackUninstaller = Join-Path $dir 'quark-cloud-drive\\unins000.exe'",
+          "  if (Test-Path $fallbackUninstaller) {",
+          "    Write-Host '使用备用卸载程序路径' -ForegroundColor Yellow",
+          "    Start-Process -FilePath $fallbackUninstaller -ArgumentList '/S' -Wait",
+          "  } else {",
+          "    Write-Warning '未找到Quark Cloud Drive卸载程序，请手动卸载。'",
+          "  }",
           "}"
         ]
       }
     }
   },
   "bin": [
-    "quark-cloud-drive/QuarkCloudDrive.exe" // 相对于版本目录的路径
+    "quark-cloud-drive/QuarkCloudDrive.exe"
   ],
   "shortcuts": [
-    ["quark-cloud-drive/QuarkCloudDrive.exe", "Quark Cloud Drive"] // 与 bin 路径一致
+    [
+      "quark-cloud-drive/QuarkCloudDrive.exe",
+      "Quark Cloud Drive",
+      "",
+      "quark-cloud-drive/QuarkCloudDrive.ico"
+    ]
   ],
   "checkver": {
     "url": "https://www.quark.cn/download",
@@ -43,7 +66,11 @@
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v$version_release_%28Build*%29.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe"
+        "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v$version_release_%28Build*%29.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
+        "hash": {
+          "url": "$url",
+          "algorithm": "sha256"
+        }
       }
     }
   }
