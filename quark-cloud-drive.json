@@ -6,7 +6,7 @@
   "architecture": {
     "64bit": {
       "url": "https://pdds-c1-cdn.quark.cn/82-4/stfile/2503/6c4d40b9f324e9d0773c7127c88271db/QuarkCloudDrive_v3.19.0_release_%28Build2135311-20250327222033%29.exe?auth_key=1749527910-0-0-0b86e2a1981048e9a03f568e693b887c&SESSID=73e4321d5a4e241ab3c73496c7f0bafc&ext=uc.exe",
-      "hash": "16204EFDDD71A53CBD2C00E96938B1BF6D9AFCF10F3C242689F195A5E05D8C24",
+      "hash": "1BADF675028A6B505E746D63F099AB02292BFBF9544BCF731CA0282087E7A5A39",
       "extract_dir": "quark-cloud-drive", // 安装目录的一级文件夹（与最终路径中的quark-cloud-drive对应）
       "pre_install": [], // 移除文件复制步骤，直接使用下载的EXE
       "installer": {
