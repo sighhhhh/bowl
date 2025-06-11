@@ -1,6 +1,9 @@
 {
   "name": "virtualbox-np",
   "version": "7.1.10",
+  "description": "Oracle VM VirtualBox 虚拟化软件，支持创建和管理虚拟机",
+  "homepage": "https://www.virtualbox.org",
+  "license": "GPL-2.0",
   "architecture": {
     "64bit": {
       "url": "https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe",
@@ -11,15 +14,20 @@
         "VBoxHeadless.exe"
       ],
       "shortcuts": [
-        [
-          "VirtualBox.exe",
-          "Oracle VM VirtualBox"
-        ]
-      ]
+        ["VirtualBox.exe", "Oracle VM VirtualBox"]
+      ],
+      "installer": {
+        "args": ["/S", "/NORESTART"],
+        "removetools": true
+      }
     }
   },
-  "description": "Oracle VM VirtualBox 是一款功能强大的 x86 和 AMD64/Intel64 虚拟化产品",
-  "homepage": "https://www.virtualbox.org",
-  "license": "GPL-2.0",
-  "dependencies": []
+  "dependencies": [],
+  "checkver": "https://www.virtualbox.org/wiki/Downloads",
+  "autoupdate": {
+    "url": "https://download.virtualbox.org/virtualbox/$version/VirtualBox-$version-Win.exe",
+    "hash": {
+      "url": "https://download.virtualbox.org/virtualbox/$version/SHA256SUMS.txt"
+    }
+  }
 }
