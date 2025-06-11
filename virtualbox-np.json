@@ -18,8 +18,8 @@
             ],
             "installer": {
                 "args": [
-                    "--silent",      // EXE安装程序的静默安装参数
-                    "--target", "D:\\Software\\scoop\\apps\\virtualbox-np\\7.1.10"  // 指定安装目录
+                    "--silent",
+                    "--target", "D:\\Software\\scoop\\apps\\virtualbox-np\\7.1.10"
                 ]
             }
         }
