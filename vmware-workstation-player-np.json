@@ -9,7 +9,7 @@
             "url": "https://dl.vmecum.com/vmware_o.exe",
             "hash": "90016F7B65CAC2863C48A8CBDC136B35DD41F1AFE1AAE60A60483BB77C6117E0",
             "bin": [
-                "vmware-vmx.exe",
+                "vmware_o.exe",
                 "vmrun.exe",
                 "vmware-vmrc.exe"
             ],
