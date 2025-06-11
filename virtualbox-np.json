@@ -1,26 +1,25 @@
 {
-    "version": "7.1.10",
-    "description": "Installation script for virtualbox",
-    "homepage": "https://www.virtualbox.org/",
-    "architecture": {
-        "64bit": {
-            "url": "https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe",
-            "hash": "193DE3F5890B4653E2B05F95221C681F96749E7F10F7F38D1DDBD3895B3ECA70"
-        }
-    },
-    "innosetup": true,
-    "bin": "virtualbox.exe",
-    "shortcuts": [
+  "name": "virtualbox-np",
+  "version": "7.1.10",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe",
+      "hash": "193DE3F5890B4653E2B05F95221C681F96749E7F10F7F38D1DDBD3895B3ECA70",
+      "bin": [
+        "VirtualBox.exe",
+        "VBoxManage.exe",
+        "VBoxHeadless.exe"
+      ],
+      "shortcuts": [
         [
-            "virtualbox.exe",
-            "virtualbox"
+          "VirtualBox.exe",
+          "Oracle VM VirtualBox"
         ]
-    ],
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://objects.githubusercontent.com/github-production-release-asset-2e65be/746129366/f1fb0464-9866-41d6-b8ff-f224164b65b6?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250603%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250603T142218Z&X-Amz-Expires=300&X-Amz-Signature=4fe57a4d2f2504dd8942f972cadc7b37c37fb6aa15ab165418880a30eb47e2ca&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dinstall_windows.exe&response-content-type=application%2Foctet-stream"
-            }
-        }
+      ]
     }
+  },
+  "description": "Oracle VM VirtualBox 是一款功能强大的 x86 和 AMD64/Intel64 虚拟化产品",
+  "homepage": "https://www.virtualbox.org",
+  "license": "GPL-2.0",
+  "dependencies": []
 }
