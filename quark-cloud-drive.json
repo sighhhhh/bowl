@@ -15,6 +15,7 @@
         "Move-Item -Path $downloadPath -Destination $installerPath -Force"
       ],
       "installer": {
+        
         "script": [
           "# 启动安装程序（用户需手动完成安装）",
           "$installer = Join-Path $dir 'quark_installer.exe'",
