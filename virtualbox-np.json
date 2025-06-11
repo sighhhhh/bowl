@@ -14,7 +14,7 @@
                 "VBoxHeadless.exe"
             ],
             "shortcuts": [
-                ["VirtualBox.exe", "Oracle VM VirtualBox"]
+                ["VirtualBox-np.exe", "Oracle VM VirtualBox"]
             ],
             "installer": {
                 "args": [
