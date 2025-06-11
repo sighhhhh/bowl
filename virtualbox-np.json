@@ -1,33 +1,37 @@
 {
-  "name": "virtualbox-np",
-  "version": "7.1.10",
-  "description": "Oracle VM VirtualBox 虚拟化软件，支持创建和管理虚拟机",
-  "homepage": "https://www.virtualbox.org",
-  "license": "GPL-2.0",
-  "architecture": {
-    "64bit": {
-      "url": "https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe",
-      "hash": "193DE3F5890B4653E2B05F95221C681F96749E7F10F7F38D1DDBD3895B3ECA70",
-      "bin": [
-        "VirtualBox.exe",
-        "VBoxManage.exe",
-        "VBoxHeadless.exe"
-      ],
-      "shortcuts": [
-        ["VirtualBox.exe", "Oracle VM VirtualBox"]
-      ],
-      "installer": {
-        "args": ["/SILENT", "/NORESTART"], // 修改为VirtualBox支持的参数
-        "removetools": true
-      }
+    "name": "virtualbox-np",
+    "version": "7.1.10",
+    "description": "Oracle VM VirtualBox 虚拟化软件，支持创建和管理虚拟机",
+    "homepage": "https://www.virtualbox.org",
+    "license": "GPL-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe",
+            "hash": "193DE3F5890B4653E2B05F95221C681F96749E7F10F7F38D1DDBD3895B3ECA70",
+            "bin": [
+                "VirtualBox.exe",
+                "VBoxManage.exe",
+                "VBoxHeadless.exe"
+            ],
+            "shortcuts": [
+                ["VirtualBox.exe", "Oracle VM VirtualBox"]
+            ],
+            "installer": {
+                // 使用 --silent 开启静默安装，搭配 --msiparams 传递 MSI 安装参数
+                "args": [
+                    "--silent",
+                    "--msiparams",
+                    "\"INSTALLDIR=C:\\Program Files\\Oracle\\VirtualBox;REBOOT=ReallySuppress\""
+                ]
+            }
+        }
+    },
+    "dependencies": [],
+    "checkver": "https://www.virtualbox.org/wiki/Downloads",
+    "autoupdate": {
+        "url": "https://download.virtualbox.org/virtualbox/$version/VirtualBox-$version-Win.exe",
+        "hash": {
+            "url": "https://download.virtualbox.org/virtualbox/$version/SHA256SUMS.txt"
+        }
     }
-  },
-  "dependencies": [],
-  "checkver": "https://www.virtualbox.org/wiki/Downloads",
-  "autoupdate": {
-    "url": "https://download.virtualbox.org/virtualbox/$version/VirtualBox-$version-Win.exe",
-    "hash": {
-      "url": "https://download.virtualbox.org/virtualbox/$version/SHA256SUMS.txt"
-    }
-  }
 }
