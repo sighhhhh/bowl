@@ -1,35 +1,31 @@
 {
-    "name": "virtualbox-np",
-    "version": "7.1.10",
-    "description": "Oracle VM VirtualBox 虚拟化软件，支持创建和管理虚拟机",
-    "homepage": "https://www.virtualbox.org",
-    "license": "GPL-2.0",
-    "architecture": {
-        "64bit": {
-            "url": "https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe",
-            "hash": "193DE3F5890B4653E2B05F95221C681F96749E7F10F7F38D1DDBD3895B3ECA70",
-            "bin": [
-                "VirtualBox.exe",
-                "VBoxManage.exe",
-                "VBoxHeadless.exe"
-            ],
-            "shortcuts": [
-                ["VirtualBox.exe", "Oracle VM VirtualBox"]
-            ],
-            "installer": {
-                "args": [
-                    "--silent",
-                    "--target", "$dir"
-                ]
-            }
-        }
-    },
-    "dependencies": [],
-    "checkver": "https://www.virtualbox.org/wiki/Downloads",
-    "autoupdate": {
-        "url": "https://download.virtualbox.org/virtualbox/$version/VirtualBox-$version-Win.exe",
-        "hash": {
-            "url": "https://download.virtualbox.org/virtualbox/$version/SHA256SUMS.txt"
-        }
+  "name": "virtualbox-np",
+  "version": "7.1.10",
+  "description": "Oracle VM VirtualBox 虚拟化软件",
+  "homepage": "https://www.virtualbox.org",
+  "license": "GPL-2.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe",
+      "hash": "193DE3F5890B4653E2B05F95221C681F96749E7F10F7F38D1DDBD3895B3ECA70",
+      "bin": ["VirtualBox.exe", "VBoxManage.exe", "VBoxHeadless.exe"],
+      "shortcuts": [["VirtualBox.exe", "Oracle VM VirtualBox"]],
+      "installer": {
+        "script": "Start-Process -FilePath \"$dir\\VirtualBox-7.1.10-169112-Win.exe\" -Wait"
+      },
+      "post_install": [
+        "Write-Host '请手动完成安装，安装目录选择：D:\\Software\\scoop\\apps\\virtualbox-np\\current'",
+        "Write-Host '安装完成后按任意键继续...'",
+        "$host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown') | Out-Null"
+      ]
     }
-}                    
+  },
+  "dependencies": [],
+  "checkver": "https://www.virtualbox.org/wiki/Downloads",
+  "autoupdate": {
+    "url": "https://download.virtualbox.org/virtualbox/$version/VirtualBox-$version-Win.exe",
+    "hash": {
+      "url": "https://download.virtualbox.org/virtualbox/$version/SHA256SUMS.txt"
+    }
+  }
+}
