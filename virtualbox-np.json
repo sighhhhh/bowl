@@ -19,7 +19,7 @@
             "installer": {
                 "args": [
                     "--silent",
-                    "--target", "D:\\Software\\scoop\\apps\\virtualbox-np\\7.1.10"
+                    "--target", "D:\\Software\\scoop\\apps\\"
                 ]
             }
         }
