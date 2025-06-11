@@ -20,7 +20,7 @@
                 "args": [
                     "--silent",      // EXE安装程序的静默安装参数
                     "--keep",        // 安装后保留临时文件（可选）
-                    "--target", "INSTALLDIR=D:\\Software\\scoop\\apps\\virtualbox-np\\7.1.10"  // 指定安装目录
+                    "--target", "D:\\Software\\scoop\\apps\\virtualbox-np\\7.1.10"  // 指定安装目录
                 ]
             }
         }
