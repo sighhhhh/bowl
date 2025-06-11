@@ -1,12 +1,12 @@
 {
     "name": "vmware-workstation-player-np",
     "version": "17.5.0",
-    "description": "VMware Workstation Player - 功能强大的虚拟化软件，用于在单个物理机上运行多个虚拟机",
+    "description": "VMware Workstation Player 虚拟化软件",
     "homepage": "https://www.vmware.com/products/workstation-player.html",
     "license": "Proprietary",
     "architecture": {
         "64bit": {
-            "url": "https://dl.vmecum.com/vmware_o.exe",
+            "url": "https://download3.vmware.com/software/WKST-PLAYER-1750/VMware-player-full-17.5.0-22583795.exe",
             "hash": "90016F7B65CAC2863C48A8CBDC136B35DD41F1AFE1AAE60A60483BB77C6117E0",
             "bin": [
                 "vmware-vmx.exe",
