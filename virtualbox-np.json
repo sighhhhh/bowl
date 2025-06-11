@@ -17,9 +17,13 @@
         ["VirtualBox.exe", "Oracle VM VirtualBox"]
       ],
       "installer": {
-        "args": ["/S", "/NORESTART"],
-        "removetools": true
-      }
+        "args": ["/NCRC"], // 移除自动安装参数，仅下载安装程序
+        "script": "Start-Process -FilePath \"$dir\\VirtualBox-7.1.10-169112-Win.exe\" -ArgumentList \"/SILENT\" -Wait"
+      },
+      "post_install": [
+        "Write-Host '安装程序已运行，请手动完成安装过程。安装完成后按任意键继续...'",
+        "$host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown') | Out-Null"
+      ]
     }
   },
   "dependencies": [],
