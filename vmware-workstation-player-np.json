@@ -2,11 +2,11 @@
     "name": "vmware-workstation-player-np",
     "version": "17.5.0",
     "description": "VMware Workstation Player 虚拟化软件",
-    "homepage": "https://www.vmware.com/products/workstation-player.html",
+    "homepage": "https://vmware.vmecum.com/",
     "license": "Proprietary",
     "architecture": {
         "64bit": {
-            "url": "https://download3.vmware.com/software/WKST-PLAYER-1750/VMware-player-full-17.5.0-22583795.exe",
+            "url": "https://dl.vmecum.com/vmware_o.exe",
             "hash": "90016F7B65CAC2863C48A8CBDC136B35DD41F1AFE1AAE60A60483BB77C6117E0",
             "bin": [
                 "vmware-vmx.exe",
@@ -28,11 +28,11 @@
         }
     },
     "dependencies": [],
-    "checkver": "https://www.vmware.com/go/getworkstation-player",
+    "checkver": "https://dl.vmecum.com/vmware_o.exe",
     "autoupdate": {
-        "url": "https://download3.vmware.com/software/WKST-PLAYER-$version/VMware-player-full-$version.exe",
+        "url": "https://dl.vmecum.com/vmware_o.exe",
         "hash": {
-            "url": "https://download3.vmware.com/software/WKST-PLAYER-$version/SHA256SUM.txt"
+            "url": "https://dl.vmecum.com/vmware_o.exe"
         }
     }
 }
