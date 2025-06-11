@@ -9,7 +9,7 @@
             "url": "https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe",
             "hash": "193DE3F5890B4653E2B05F95221C681F96749E7F10F7F38D1DDBD3895B3ECA70",
             "bin": [
-                "VirtualBox-np.exe",
+                "VirtualBox.exe",
                 "VBoxManage.exe",
                 "VBoxHeadless.exe"
             ],
@@ -17,11 +17,10 @@
                 ["VirtualBox.exe", "Oracle VM VirtualBox"]
             ],
             "installer": {
-                // 使用 --silent 开启静默安装，搭配 --msiparams 传递 MSI 安装参数
                 "args": [
-                    "--silent",
-                    "--msiparams",
-                    "\"INSTALLDIR=C:\\Program Files\\Oracle\\VirtualBox;REBOOT=ReallySuppress\""
+                    "--silent",      // EXE安装程序的静默安装参数
+                    "--keep",        // 安装后保留临时文件（可选）
+                    "--target", "INSTALLDIR=D:\\Software\\scoop\\apps\\virtualbox-np\\7.1.10"  // 指定安装目录
                 ]
             }
         }
@@ -34,4 +33,4 @@
             "url": "https://download.virtualbox.org/virtualbox/$version/SHA256SUMS.txt"
         }
     }
-}
+}                    
